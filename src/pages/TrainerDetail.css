@@ -1,0 +1,42 @@
+/* Contenedor principal */
+.trainer-detail-container {
+    margin-top: 40px !important; 
+}
+
+/* Nombre */
+.trainer-detail-title {
+    font-weight: bold !important;
+}
+
+/* Detalles */
+.trainer-detail-subtitle {
+    margin-top: 16px !important; 
+    margin-bottom: 8px !important; 
+}
+
+/* Lista de detalles */
+.trainer-detail-list {
+    margin-bottom: 24px !important; 
+    padding-left: 24px !important; 
+    list-style-type: disc;
+}
+
+/* Estilo de la imagen */
+.trainer-detail-image {
+    width: 400px;
+    max-width: 100%;
+    border-radius: 8px;
+    display: block;
+    margin-bottom: 32px; 
+}
+
+/* Botón Volver */
+.btn-trainer-back {
+    background-color: #00AEEF !important;
+    color: white !important;
+    text-transform: none !important; 
+}
+
+.btn-trainer-back:hover {
+    background-color: #008dc1 !important;
+}

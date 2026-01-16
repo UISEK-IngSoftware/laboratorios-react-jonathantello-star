@@ -1,0 +1,57 @@
+
+.trainer-form-container {
+    margin-top: 40px !important; 
+    margin-bottom: 40px !important; 
+}
+
+.trainer-form-paper {
+    padding: 32px !important; 
+    border-radius: 12px !important;
+}
+
+/* Titulo del formulario */
+.trainer-form-title {
+    margin-bottom: 24px !important; 
+    color: #333;
+}
+
+/* Estructura de grid para los campos */
+.trainer-form-grid {
+    display: grid !important;
+    gap: 24px !important; 
+}
+
+/* Area de la foto */
+.trainer-photo-box {
+    padding: 16px !important; 
+    background-color: #f9f9f9 !important;
+    border-radius: 8px !important;
+    border: 1px dashed #ccc !important;
+}
+
+.trainer-photo-caption {
+    margin-bottom: 8px !important; 
+}
+
+.trainer-form-buttons {
+    margin-top: 16px !important; 
+    display: flex !important;
+    gap: 16px !important; 
+}
+
+/* Botón Guardar */
+.btn-save-trainer {
+    background-color: #28a745 !important;
+    color: white !important;
+    text-transform: none !important;
+    box-shadow: none !important;
+}
+
+.btn-save-trainer:hover {
+    background-color: #218838 !important;
+}
+
+/* Botón Cancelar */
+.btn-cancel-trainer {
+    text-transform: none !important;
+}

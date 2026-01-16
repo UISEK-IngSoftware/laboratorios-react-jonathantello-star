@@ -1,34 +1,27 @@
 
-.list-container {
+.trainer-list-container {
     margin-top: 32px !important; 
 }
 
-/* Titulo de la sección */
-.list-title {
+/* Titulo Entrenadores */
+.trainer-list-title {
     margin-bottom: 16px !important; 
 }
 
 /* Contenedor del boton de añadir */
-.add-button-box {
+.trainer-add-box {
     display: flex !important;
     justify-content: flex-start !important;
     margin-bottom: 32px !important; 
 }
 
-/* Botón de añadir Pokémon */
-.btn-add-pokemon {
+.btn-add-trainer {
     background-color: #28a745 !important;
     color: white !important;
     text-transform: none !important;
     box-shadow: none !important;
-    padding: 6px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    border: none;
-    font-size: 0.875rem;
-    font-weight: 500;
 }
 
-.btn-add-pokemon:hover {
+.btn-add-trainer:hover {
     background-color: #218838 !important;
 }

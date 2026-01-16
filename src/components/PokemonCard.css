@@ -1,0 +1,43 @@
+
+.pokemon-card {
+    height: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* titulo del pokemon */
+.pokemon-card-title {
+    font-weight: bold !important;
+}
+
+.pokemon-card-content {
+    flex-grow: 1;
+}
+
+.pokemon-card-actions {
+    padding: 16px !important;
+}
+
+.btn-square {
+    border-radius: 4px !important;
+    width: 38px !important;
+    height: 38px !important;
+    color: white !important;
+    transition: opacity 0.2s;
+}
+
+.btn-square:hover {
+    opacity: 0.8 !important;
+}
+
+.btn-view {
+    background-color: #0097D7 !important;
+}
+
+.btn-edit {
+    background-color: #00AEEF !important;
+}
+
+.btn-delete {
+    background-color: #E14C56 !important;
+}

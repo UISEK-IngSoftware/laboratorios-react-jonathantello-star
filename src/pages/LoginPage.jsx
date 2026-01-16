@@ -2,19 +2,19 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../services/authService";
+import './LoginPage.css'; 
 
 export default function LoginPage() {
     const navigate = useNavigate();
     const [loginData, setLoginData] = useState({
         username: '',
         password: ''
-
     });
+
     const handleChange = (e) => {
         setLoginData({
             ...loginData,
             [e.target.name]: e.target.value
-
         });
     }
 
@@ -26,15 +26,18 @@ export default function LoginPage() {
             alert("Inicio de sesión exitoso");
             navigate('/');
         } catch (error) {
-            console.error("Error during login:", error);
+            console.error("Error durante el login:", error);
             alert("Error al iniciar sesión");
         }
     }
 
-
     return (
-        <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2 }}>
-            <Typography variant="h5" gutterBottom>
+        <Box 
+            component="form" 
+            onSubmit={handleSubmit} 
+            className="login-container"
+        >
+            <Typography variant="h5" className="login-title">
                 Inicio de sesión
             </Typography>
             <TextField
@@ -44,6 +47,7 @@ export default function LoginPage() {
                 value={loginData.username}
                 onChange={handleChange}
                 required
+                className="login-input"
             />
             <TextField
                 label="Contraseña"
@@ -53,8 +57,14 @@ export default function LoginPage() {
                 onChange={handleChange}
                 variant="outlined"
                 required
+                className="login-input"
             />
-            <Button type="submit" variant="contained" color="primary">
+            <Button 
+                type="submit" 
+                variant="contained" 
+                color="primary"
+                className="login-button"
+            >
                 Iniciar sesión
             </Button>
         </Box>
