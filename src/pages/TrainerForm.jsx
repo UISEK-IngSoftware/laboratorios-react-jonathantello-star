@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, TextField, Button, Typography, Box, Paper } from "@mui/material";
+import Spinner from "../components/Spinner"; 
 import { fetchTrainerById, addTrainer, updateTrainer } from "../services/trainerService";
 import './TrainerForm.css'; 
 
@@ -16,9 +17,12 @@ export default function TrainerForm() {
     birth_date: "",
   });
   const [file, setFile] = useState(null);
+  
+  const [loading, setLoading] = useState(isEdit);
 
   useEffect(() => {
     if (isEdit) {
+      setLoading(true);
       fetchTrainerById(id).then((data) => {
         setFormData({
           first_name: data.first_name,
@@ -26,12 +30,16 @@ export default function TrainerForm() {
           level: data.level,
           birth_date: data.birth_date,
         });
-      }).catch(console.error);
+      })
+      .catch(console.error)
+      .finally(() => setLoading(false)); 
     }
   }, [id, isEdit]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); 
+
     const dataToSend = {
       ...formData,
       level: parseInt(formData.level),
@@ -50,8 +58,15 @@ export default function TrainerForm() {
     } catch (error) {
       console.error("Error al guardar:", error.response?.data || error);
       alert("Error al guardar. Revisa que los campos sean correctos.");
+    } finally {
+      setLoading(false); 
     }
   };
+
+  
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <Container maxWidth="sm" className="trainer-form-container">

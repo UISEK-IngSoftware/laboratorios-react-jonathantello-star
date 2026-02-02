@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, TextField, Button, Typography, Box, Paper } from "@mui/material";
+import Spinner from "../components/Spinner"; 
 import { fetchPokemonById, addPokemon, updatePokemon } from "../services/pokemonService";
 import './PokemonForm.css'; 
 
@@ -16,9 +17,12 @@ export default function PokemonForm() {
     height: "",
   });
   const [file, setFile] = useState(null);
+  
+  const [loading, setLoading] = useState(isEdit);
 
   useEffect(() => {
     if (isEdit) {
+      setLoading(true); 
       fetchPokemonById(id).then((data) => {
         setFormData({
           name: data.name,
@@ -26,12 +30,16 @@ export default function PokemonForm() {
           weight: data.weight || "",
           height: data.height || "",
         });
-      }).catch(console.error);
+      })
+      .catch(console.error)
+      .finally(() => setLoading(false)); 
     }
   }, [id, isEdit]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); 
+
     const dataToSend = {
       name: formData.name,
       type: formData.type,
@@ -52,8 +60,15 @@ export default function PokemonForm() {
     } catch (error) {
       console.error("Error detallado:", error.response?.data || error);
       alert("Error al guardar.");
+    } finally {
+      setLoading(false); 
     }
   };
+
+  
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <Container maxWidth="sm" className="form-container">

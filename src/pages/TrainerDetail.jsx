@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, Typography, Button, Box } from "@mui/material";
+import Spinner from "../components/Spinner"; 
 import { fetchTrainerById } from "../services/trainerService";
 import './TrainerDetail.css'; 
 
@@ -8,17 +9,24 @@ export default function TrainerDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [trainer, setTrainer] = useState(null);
+  const [loading, setLoading] = useState(true); 
   const mediaUrl = import.meta.env.VITE_MEDIA_URL;
 
   useEffect(() => {
-    fetchTrainerById(id).then(setTrainer).catch(console.error);
+    setLoading(true); 
+    fetchTrainerById(id)
+      .then(setTrainer)
+      .catch(console.error)
+      .finally(() => setLoading(false)); 
   }, [id]);
 
-  if (!trainer) return (
-    <Container className="trainer-detail-container">
-      <Typography>Cargando detalles...</Typography>
-    </Container>
-  );
+  
+  if (loading) {
+    return <Spinner />;
+  }
+
+  
+  if (!trainer) return null;
 
   return (
     <Container maxWidth="md" className="trainer-detail-container">

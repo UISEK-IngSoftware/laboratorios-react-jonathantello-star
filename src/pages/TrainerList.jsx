@@ -2,16 +2,22 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Grid, Container, Typography, Button, Box } from "@mui/material";
 import TrainerCard from "../components/TrainerCard";
+import Spinner from "../components/Spinner"; 
 import { fetchTrainers, deleteTrainer } from "../services/trainerService";
 import './TrainerList.css'; 
 
 export default function TrainerList() {
   const [trainers, setTrainers] = useState([]);
+  const [loading, setLoading] = useState(true); 
   const navigate = useNavigate();
   const isLoggedIn = !!localStorage.getItem("access_token");
 
   useEffect(() => {
-    fetchTrainers().then(setTrainers).catch(console.error);
+    setLoading(true); 
+    fetchTrainers()
+      .then(setTrainers)
+      .catch(console.error)
+      .finally(() => setLoading(false)); 
   }, []);
 
   const handleDelete = async (id) => {
@@ -24,6 +30,11 @@ export default function TrainerList() {
       }
     }
   };
+
+  
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <Container className="trainer-list-container">

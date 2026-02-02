@@ -2,16 +2,22 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Grid, Container, Button, Box, Typography } from "@mui/material";
 import PokemonCard from "../components/PokemonCard";
+import Spinner from "../components/Spinner"; 
 import { fetchPokemons, deletePokemon } from "../services/pokemonService";
 import './PokemonList.css'; 
 
 export default function PokemonList() {
   const [pokemons, setPokemons] = useState([]);
+  const [loading, setLoading] = useState(true); 
   const navigate = useNavigate();
   const isLoggedIn = !!localStorage.getItem("access_token");
 
   useEffect(() => {
-    fetchPokemons().then(setPokemons).catch(console.error);
+    setLoading(true); 
+    fetchPokemons()
+      .then(setPokemons)
+      .catch(console.error)
+      .finally(() => setLoading(false)); 
   }, []);
 
   const handleDelete = async (id) => {
@@ -24,6 +30,11 @@ export default function PokemonList() {
       }
     }
   };
+
+  
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <Container className="list-container">
